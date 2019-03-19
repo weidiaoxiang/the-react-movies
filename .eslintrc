@@ -1,0 +1,68 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "jasmine": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "babel",
+    "react",
+    "jsx-a11y",
+    "prettier"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/imports-first": 0,
+    "import/no-dynamic-require": 0,
+    "import/newline-after-import": "error",
+    "import/no-extraneous-dependencies": 0,
+    "import/order": 0,
+    "linebreak-style": 0,
+    "require-jsdoc": 0,
+    "valid-jsdoc": 0,
+    "spaced-comment": 0,
+    "no-invalid-this": 0,
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "babel/no-invalid-this": "error",
+    "react/display-name": 0,
+    "jsx-a11y/label-has-for": 0,
+    "global-require": 0
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true,
+    "process": true,
+    "module": true,
+    "require": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  }
+}
+
