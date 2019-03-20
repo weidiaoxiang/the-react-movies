@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const Dotenv = require("dotenv-webpack");
 const configConstants = require("./constants");
 
 const {
@@ -98,6 +99,9 @@ const config = {
         to: "assets",
       },
     ]),
+    new Dotenv({
+      path: path.join(configConstants.ABSOLUTE_BASE, ".env"),
+    }),
     /*eslint-disable*/
     new ProgressBarPlugin({
       format: "  build [:bar] " + ":percent" + " (:elapsed seconds)",

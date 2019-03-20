@@ -1,8 +1,8 @@
 const webpack = require("webpack");
 const path = require("path");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const configConstants = require("./constants");
 const Jarvis = require("webpack-jarvis");
+const configConstants = require("./constants");
 
 const { DEVTOOL = "cheap-eval-module-source-map" } = process.env;
 
