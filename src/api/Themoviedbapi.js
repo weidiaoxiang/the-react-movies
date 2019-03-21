@@ -3,7 +3,7 @@ const apiKey = process.env.API_KEY;
 const apiLanguage = process.env.LANGUAGE;
 
 const generateQueryParams = data => {
-  const ret = Object.keys(data).map((key, value) => `${key}=${value}`);
+  const ret = Object.keys(data).map(key => `${key}=${data[key]}`);
   return ret.join("&");
 };
 
@@ -13,4 +13,5 @@ const generateQueryUrl = (url, args = {}) => {
   return serverUrl;
 };
 
-export default generateQueryUrl;
+const api = {};
+export default api;

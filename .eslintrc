@@ -38,7 +38,7 @@
     "valid-jsdoc": 0,
     "spaced-comment": 0,
     "no-invalid-this": 0,
-    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
     "babel/no-invalid-this": "error",
     "react/display-name": 0,
     "jsx-a11y/label-has-for": 0,
