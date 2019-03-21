@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
     case POPULAR_LOAD_BEGIN:
       return { ...state, popfetchStatus: 0 };
     case POPULAR_LOAD_SUCCESS:
-      return { ...state, popfetchStatus: 1 };
+      return { ...state, popularMovies: action.payload.results, popfetchStatus: 1 };
     case POPULAR_LOAD_FAILED:
       return { ...state, popfetchStatus: -1 };
     case TOP_LOAD_BEGIN:
