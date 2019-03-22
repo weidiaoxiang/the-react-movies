@@ -20,6 +20,7 @@ const _get = (url, args) => axios.get(generateQueryUrl(url, args));
 const api = {
   getPopluarMovies: () => _get("movie/popular"),
   getTopMovies: () => _get("movie/top_rated"),
+  getGenres: () => _get("genre/movie/list"),
 };
 
 export default api;

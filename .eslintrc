@@ -42,7 +42,9 @@
     "babel/no-invalid-this": "error",
     "react/display-name": 0,
     "jsx-a11y/label-has-for": 0,
-    "global-require": 0
+    "global-require": 0,
+    "camelcase": [2, {"properties": "always"}],
+    "react/destructuring-assignment": [true, "never", { "ignoreClassFields": true }]
   },
   "globals": {
     "window": true,

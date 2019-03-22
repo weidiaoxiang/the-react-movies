@@ -12,14 +12,14 @@ export const SEARCH_LOAD_BEGIN = "SEARCH_LOAD_BEGIN";
 export const SEARCH_LOAD_SUCCESS = "SEARCH_LOAD_SUCCESS";
 export const SEARCH_LOAD_FAILED = "SEARCH_LOAD_FAILED";
 
-const getPopularMoviews = () => dispatch => {
+export const getPopularMovies = () => dispatch => {
   dispatch({ type: POPULAR_LOAD_BEGIN, payload: null });
   return api
-    .getPopularMoviews()
+    .getPopluarMovies()
     .then(response => {
       dispatch({
         type: POPULAR_LOAD_SUCCESS,
-        payload: response.body,
+        payload: response.data,
       });
     })
     .catch(err => dispatch({ type: POPULAR_LOAD_FAILED, payload: err }));

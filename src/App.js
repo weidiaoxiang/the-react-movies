@@ -7,22 +7,38 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Navbar from "./containers/Navbar";
 import SearchInput from "./containers/SearchBar";
 import Footer from "./components/Footer";
+import { getGenres } from "./actions/genresActions";
 
-const App = props => (
-  <MuiThemeProvider>
-    <div className="App">
-      <div className="App__header">
-        <Navbar />
-      </div>
-      <div className="App__content" />
-      <div className="App__footer" />
-    </div>
-  </MuiThemeProvider>
-);
+class App extends Component {
+  static propTypes = {
+    ownProps: PropTypes.object.isRequired,
+    getGenres: PropTypes.func.isRequired,
+  };
+
+  componentDidMount() {
+    this.props.getGenres();
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider>
+        <div className="App">
+          <div className="App__header">
+            <Navbar />
+          </div>
+          <div className="App__content">{this.props.children}</div>
+          <div className="App__footer" />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => ({ ownProps });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getGenres: () => dispatch(getGenres()),
+});
 
 export default connect(
   mapStateToProps,
