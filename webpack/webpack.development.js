@@ -22,7 +22,7 @@ module.exports = {
   entry: [
     "@babel/polyfill",
     "react-hot-loader/patch",
-    "webpack-hot-middleware/client?reload=true&noInfo=true",
+    //"webpack-hot-middleware/client?path=/__webpack_hmr&timeout=10000&reload=true&noInfo=true",
     "./index.js",
   ],
 

@@ -1,42 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
-//import { blue, indigo } from "@material-ui/core/colors";
-//import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import Navbar from "./containers/Navbar";
+import SearchInput from "./containers/SearchBar";
+import Footer from "./components/Footer";
 
-// const theme = createMuiTheme({
-//   palette: {
-//     secondary: {
-//       main: blue[900],
-//     },
-//     primary: {
-//       main: indigo[700],
-//     },
-//   },
-//   typography: {
-//     // Use the system font instead of the default Roboto font.
-//     fontFamily: ['"Lato"', "sans-serif"].join(","),
-//   },
-// });
-
-const App = () => {
-  return (
+const App = props => (
+  <MuiThemeProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App__header">
+        <Navbar />
+      </div>
+      <div className="App__content" />
+      <div className="App__footer" />
     </div>
-  );
-};
-export default App;
+  </MuiThemeProvider>
+);
+
+const mapStateToProps = (state, ownProps) => ({ ownProps });
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
