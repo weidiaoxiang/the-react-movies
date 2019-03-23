@@ -10,8 +10,11 @@ export default function(state = initialState, action) {
     case MOVIE_LOAD_BEGIN:
       return { ...state, fetchStatus: 0 };
     case MOVIE_LOAD_SUCCESS: {
-      const item = { [action.payload.id]: action.payload };
-      return { ...state, movieItems: { ...state.movieItems, item }, fetchStatus: 1 };
+      return {
+        ...state,
+        movieItems: { ...state.movieItems, [action.payload.id]: action.payload },
+        fetchStatus: 1,
+      };
     }
     case MOVIE_LOAD_FAILED:
       return { ...state, fetchStatus: -1 };

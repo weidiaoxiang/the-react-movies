@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -9,6 +9,7 @@ import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import Typography from "@material-ui/core/Typography";
 import StarBorder from "@material-ui/icons/StarBorder";
 import { compose } from "ramda";
+import { withRouter } from "react-router-dom";
 
 export const findGenres = (movie, genres = []) => {
   if (movie.genre_ids && genres.length > 0) {
@@ -96,28 +97,41 @@ const getGridListCols = width => {
   return 1;
 };
 
-function MoviesList(props) {
-  const { classes, movies, genres, width } = props;
+class MoviesList extends Component {
+  onTileTouch = id => {
+    const { history } = this.props;
+    history.push(`/movie/${id}`);
+  };
 
-  return (
-    <div className={classes.root}>
-      <GridList cellHeight="auto" spacing={30} cols={getGridListCols(width)}>
-        {movies.map(movie => (
-          <GridListTile key={movie.id}>
-            {movie.backdrop_path ? (
-              <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
-            ) : (
-              <div style={styles.noImage} />
-            )}
-            <GridListTileBar
-              title={<HeaderTitle movie={movie} classes={classes} />}
-              subtitle={<HeaderSubTitle genres={genres} classes={classes} />}
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
-  );
+  render() {
+    const { classes, movies, genres, width } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <GridList cellHeight="auto" spacing={30} cols={getGridListCols(width)}>
+          {movies.map(movie => (
+            <GridListTile
+              key={movie.id}
+              onClick={e => {
+                e.preventDefault();
+                this.onTileTouch(movie.id);
+              }}
+            >
+              {movie.backdrop_path ? (
+                <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
+              ) : (
+                <div style={styles.noImage} />
+              )}
+              <GridListTileBar
+                title={<HeaderTitle movie={movie} classes={classes} />}
+                subtitle={<HeaderSubTitle genres={genres} classes={classes} />}
+              />
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
+    );
+  }
 }
 
 MoviesList.propTypes = {
@@ -127,6 +141,7 @@ MoviesList.propTypes = {
 };
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withWidth()
 )(MoviesList);
