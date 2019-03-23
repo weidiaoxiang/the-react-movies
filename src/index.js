@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import "./index.css";
 import routes from "./routes";
 import configureStore from "./store";
-import "./scss/all.scss";
+//import "./scss/all.scss";
 
 const MovieApp = withRouter(routes);
 const store = configureStore(/* initial state any?*/);

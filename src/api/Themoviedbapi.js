@@ -21,6 +21,8 @@ const api = {
   getPopluarMovies: () => _get("movie/popular"),
   getTopMovies: () => _get("movie/top_rated"),
   getGenres: () => _get("genre/movie/list"),
+  searchMovies: keyword => _get("search/movie", { query: keyword }),
+  getMovieById: id => _get(`movie/${id}`),
 };
 
 export default api;

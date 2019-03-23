@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getTopMovies } from "../actions/moviesActions";
+import { searchMovies } from "../actions/moviesActions";
 import MoviesList from "../components/MoviesList";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { withRouter } from "react-router-dom";
 
 class SearchResutMoviesContainer extends Component {
   static propTypes = {
     fetchStatus: PropTypes.number.isRequired,
     movies: PropTypes.objectOf(PropTypes.array).isRequired,
     genres: PropTypes.objectOf(PropTypes.array).isRequired,
-    getTMovies: PropTypes.func.isRequired,
+    sMovies: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getTMovies();
+    const {
+      match: { params },
+      sMovies,
+    } = this.props;
+    sMovies(params.query);
   }
 
   render() {
@@ -36,10 +41,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTMovies: () => dispatch(getTopMovies()),
+  sMovies: keyword => dispatch(searchMovies(keyword)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchResutMoviesContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SearchResutMoviesContainer)
+);

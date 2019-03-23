@@ -36,7 +36,7 @@ export default function(state = initialState, action) {
     case SEARCH_LOAD_BEGIN:
       return { ...state, searchStatus: 0 };
     case SEARCH_LOAD_SUCCESS:
-      return { ...state, searchStatus: 1 };
+      return { ...state, searchMovies: action.payload.results, searchStatus: 1 };
     case SEARCH_LOAD_FAILED:
       return { ...state, searchStatus: -1 };
     default:

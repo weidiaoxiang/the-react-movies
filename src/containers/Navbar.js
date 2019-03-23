@@ -9,6 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import IconButton from "@material-ui/core/IconButton";
 import { withRouter } from "react-router-dom";
 import { compose } from "ramda";
 
@@ -29,8 +30,13 @@ const styles = theme => ({
       display: "block",
     },
   },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
   search: {
-    position: "relative",
+    display: "flex",
+    alignItems: "center",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
@@ -44,14 +50,13 @@ const styles = theme => ({
       width: "auto",
     },
   },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
+  searchButton: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  searchIcon: {
+    color: "white",
   },
   inputRoot: {
     color: "inherit",
@@ -59,9 +64,9 @@ const styles = theme => ({
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
+    paddingRight: theme.spacing.unit * 10,
     paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingLeft: theme.spacing.unit,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -85,11 +90,27 @@ const styles = theme => ({
 class PrimarySearchAppBar extends React.Component {
   state = {
     tabValue: "/popular",
+    searchKeyword: "",
   };
 
   handleTabClick = (event, value) => {
     this.setState({ tabValue: value });
     this.props.history.push(value);
+  };
+
+  handleSearch = event => {
+    event.preventDefault();
+    const { searchKeyword } = this.state;
+    const { history } = this.props;
+
+    if (!!searchKeyword && searchKeyword.length > 0) {
+      history.push(`/search/${searchKeyword}`);
+    }
+  };
+
+  handleSearchType = event => {
+    const { value } = event.target;
+    this.setState({ searchKeyword: value });
   };
 
   render() {
@@ -103,16 +124,21 @@ class PrimarySearchAppBar extends React.Component {
               The React Movies
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
               <InputBase
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                onChange={this.handleSearchType}
               />
+              <IconButton
+                className={classes.searchButton}
+                aria-label="Search"
+                onClick={this.handleSearch}
+              >
+                <SearchIcon className={classes.searchIcon} />
+              </IconButton>
             </div>
             <div className={classes.grow}>
               <Tabs value={tabValue} onChange={this.handleTabClick}>

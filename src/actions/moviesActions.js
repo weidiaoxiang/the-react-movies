@@ -37,3 +37,16 @@ export const getTopMovies = () => dispatch => {
     })
     .catch(err => dispatch({ type: TOP_LOAD_FAILED, payload: err }));
 };
+
+export const searchMovies = keyword => dispatch => {
+  dispatch({ type: SEARCH_LOAD_BEGIN, payload: null });
+  return api
+    .searchMovies(keyword)
+    .then(response => {
+      dispatch({
+        type: SEARCH_LOAD_SUCCESS,
+        payload: response.data,
+      });
+    })
+    .catch(err => dispatch({ type: SEARCH_LOAD_FAILED, payload: err }));
+};

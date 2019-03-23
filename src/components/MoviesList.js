@@ -5,8 +5,10 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Grid from "@material-ui/core/Grid";
+import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import Typography from "@material-ui/core/Typography";
 import StarBorder from "@material-ui/icons/StarBorder";
+import { compose } from "ramda";
 
 export const findGenres = (movie, genres = []) => {
   if (movie.genre_ids && genres.length > 0) {
@@ -78,12 +80,28 @@ HeaderSubTitle.propTypes = {
   genres: PropTypes.objectOf(PropTypes.array).isRequired,
 };
 
+const getGridListCols = width => {
+  if (isWidthUp("xl", width)) {
+    return 4;
+  }
+
+  if (isWidthUp("lg", width)) {
+    return 3;
+  }
+
+  if (isWidthUp("md", width)) {
+    return 2;
+  }
+
+  return 1;
+};
+
 function MoviesList(props) {
-  const { classes, movies, genres } = props;
+  const { classes, movies, genres, width } = props;
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight="auto" spacing={20}>
+      <GridList cellHeight="auto" spacing={30} cols={getGridListCols(width)}>
         {movies.map(movie => (
           <GridListTile key={movie.id}>
             {movie.backdrop_path ? (
@@ -108,4 +126,7 @@ MoviesList.propTypes = {
   genres: PropTypes.objectOf(PropTypes.array).isRequired,
 };
 
-export default withStyles(styles)(MoviesList);
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(MoviesList);

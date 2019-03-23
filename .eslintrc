@@ -43,7 +43,7 @@
     "react/display-name": 0,
     "jsx-a11y/label-has-for": 0,
     "global-require": 0,
-    "camelcase": [2, {"properties": "always"}],
+    "camelcase": ["warn", {"properties": "always"}],
     "react/destructuring-assignment": [0, "never", { "ignoreClassFields": true }]
   },
   "globals": {

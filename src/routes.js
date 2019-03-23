@@ -3,12 +3,14 @@ import { Route, Redirect } from "react-router-dom";
 import App from "./App";
 import PopularMoviesContainer from "./containers/PopularMoviesContainer";
 import TopMoviesContainer from "./containers/TopMoviesContainer";
+import SearchResutMoviesContainer from "./containers/SearchResutMoviesContainer";
 
 const Routes = () => (
   <App>
     <Redirect from="/" to="/popular" />
     <Route path="/popular" component={PopularMoviesContainer} />
     <Route path="/top" component={TopMoviesContainer} />
+    <Route path="/search/:query" component={SearchResutMoviesContainer} />
   </App>
 );
 
