@@ -9,6 +9,6 @@
     "options": { "parser": "json" }
   },{
     "files": ".*ss",
-    "options": { "parser": "postcss" }
+    "options": { "parser": "postcss-scss" }
   }]
 }
