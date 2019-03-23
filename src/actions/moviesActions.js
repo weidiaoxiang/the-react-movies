@@ -24,3 +24,16 @@ export const getPopularMovies = () => dispatch => {
     })
     .catch(err => dispatch({ type: POPULAR_LOAD_FAILED, payload: err }));
 };
+
+export const getTopMovies = () => dispatch => {
+  dispatch({ type: TOP_LOAD_BEGIN, payload: null });
+  return api
+    .getTopMovies()
+    .then(response => {
+      dispatch({
+        type: TOP_LOAD_SUCCESS,
+        payload: response.data,
+      });
+    })
+    .catch(err => dispatch({ type: TOP_LOAD_FAILED, payload: err }));
+};

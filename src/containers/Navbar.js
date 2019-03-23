@@ -9,6 +9,8 @@ import { withStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { withRouter } from "react-router-dom";
+import { compose } from "ramda";
 
 const styles = theme => ({
   root: {
@@ -82,31 +84,17 @@ const styles = theme => ({
 
 class PrimarySearchAppBar extends React.Component {
   state = {
-    anchorEl: null,
-    mobileMoreAnchorEl: null,
+    tabValue: "/popular",
   };
 
-  handleProfileMenuOpen = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleMenuClose = () => {
-    this.setState({ anchorEl: null });
-    this.handleMobileMenuClose();
-  };
-
-  handleMobileMenuOpen = event => {
-    this.setState({ mobileMoreAnchorEl: event.currentTarget });
-  };
-
-  handleMobileMenuClose = () => {
-    this.setState({ mobileMoreAnchorEl: null });
+  handleTabClick = (event, value) => {
+    this.setState({ tabValue: value });
+    this.props.history.push(value);
   };
 
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
-
+    const { tabValue } = this.state;
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -127,9 +115,9 @@ class PrimarySearchAppBar extends React.Component {
               />
             </div>
             <div className={classes.grow}>
-              <Tabs>
-                <Tab label="Popular" />
-                <Tab label="Top Rated" />
+              <Tabs value={tabValue} onChange={this.handleTabClick}>
+                <Tab label="Popular" value="/popular" />
+                <Tab label="Top Rated" value="/top" />
               </Tabs>
             </div>
           </Toolbar>
@@ -143,4 +131,7 @@ PrimarySearchAppBar.propTypes = {
   classes: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+export default compose(
+  withRouter,
+  withStyles(styles)
+)(PrimarySearchAppBar);

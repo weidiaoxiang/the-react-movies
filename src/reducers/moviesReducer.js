@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
     case TOP_LOAD_BEGIN:
       return { ...state, topfetchStatus: 0 };
     case TOP_LOAD_SUCCESS:
-      return { ...state, topfetchStatus: 1 };
+      return { ...state, topMovies: action.payload.results, topfetchStatus: 1 };
     case TOP_LOAD_FAILED:
       return { ...state, topfetchStatus: -1 };
     case SEARCH_LOAD_BEGIN:

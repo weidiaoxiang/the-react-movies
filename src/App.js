@@ -11,7 +11,6 @@ import { getGenres } from "./actions/genresActions";
 
 class App extends Component {
   static propTypes = {
-    ownProps: PropTypes.object.isRequired,
     getGenres: PropTypes.func.isRequired,
   };
 
@@ -26,7 +25,7 @@ class App extends Component {
           <div className="App__header">
             <Navbar />
           </div>
-          <div className="App__content">{this.props.children}</div>
+          <div className="App__content main">{this.props.children}</div>
           <div className="App__footer" />
         </div>
       </MuiThemeProvider>
@@ -34,13 +33,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({ ownProps });
-
 const mapDispatchToProps = dispatch => ({
   getGenres: () => dispatch(getGenres()),
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App);

@@ -1,1 +1,9 @@
+@import "./variable";
 @import "./movies";
+
+.main {
+  min-height: 1px;
+  padding-left: $measure;
+  padding-right: $measure;
+}
+

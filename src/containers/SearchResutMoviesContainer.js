@@ -1,45 +1,45 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getPopularMovies } from "../actions/moviesActions";
+import { getTopMovies } from "../actions/moviesActions";
 import MoviesList from "../components/MoviesList";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-class PopularMoviesContainer extends Component {
+class SearchResutMoviesContainer extends Component {
   static propTypes = {
-    popfetchStatus: PropTypes.number.isRequired,
+    fetchStatus: PropTypes.number.isRequired,
     movies: PropTypes.objectOf(PropTypes.array).isRequired,
     genres: PropTypes.objectOf(PropTypes.array).isRequired,
-    getPMovies: PropTypes.func.isRequired,
+    getTMovies: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getPMovies();
+    this.props.getTMovies();
   }
 
   render() {
-    const { popfetchStatus, movies, genres } = this.props;
-    if (popfetchStatus === 0) {
+    const { fetchStatus, movies, genres } = this.props;
+    if (fetchStatus === 0) {
       return <CircularProgress />;
     }
-    if (popfetchStatus === -1) {
+    if (fetchStatus === -1) {
       return <div>Load Failed</div>;
     }
-    return <MoviesList movies={movies} genres={genres} title="Popular Movies" />;
+    return <MoviesList movies={movies} genres={genres} title="Top Rated Movies" />;
   }
 }
 
 const mapStateToProps = state => ({
-  popfetchStatus: state.movies.popfetchStatus,
-  movies: state.movies.popularMovies,
+  fetchStatus: state.movies.searchStatus,
+  movies: state.movies.searchMovies,
   genres: state.genres.genres,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPMovies: () => dispatch(getPopularMovies()),
+  getTMovies: () => dispatch(getTopMovies()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PopularMoviesContainer);
+)(SearchResutMoviesContainer);
