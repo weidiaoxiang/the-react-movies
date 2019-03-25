@@ -13,7 +13,7 @@ import moment from "moment";
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: "100%",
   },
   media: {
     height: 0,
@@ -35,19 +35,18 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
-  title: { color: "rgba(255,255,255, 0.9)" },
 });
 
 const HeaderTitle = ({ movie, classes }) => {
   return (
     <Grid container spacing={16}>
       <Grid item xs={12} sm container>
-        <Typography gutterBottom variant="subtitle1" className={classes.title}>
+        <Typography gutterBottom variant="subtitle1">
           {movie.original_title}
         </Typography>
       </Grid>
       <Grid item>
-        <Typography className={classes.title}>{movie.vote_average}</Typography>
+        <Typography>{movie.vote_average}</Typography>
       </Grid>
       <Grid item>
         <StarBorder color="white" className="rating__icon" />
@@ -64,7 +63,7 @@ const HeaderSubTitle = ({ genres = [], classes }) => {
   return (
     <Grid container spacing={16}>
       <Grid item xs={12} sm container>
-        <Typography className={classes.title}>
+        <Typography>
           {genres.reduce((totalG, currentG) => `${totalG} ${currentG.name}`, "")}
         </Typography>
       </Grid>

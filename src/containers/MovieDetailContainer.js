@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import withWidth from "@material-ui/core/withWidth";
 import Grid from "@material-ui/core/Grid";
-import MovieCard from "../components/MovieCard";
+import MovieDetail from "../components/MovieDetail";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { getMovieById } from "../actions/movieActions";
 import { compose } from "ramda";
@@ -60,7 +60,7 @@ class MoviesDetailContainer extends Component {
       !!movie && (
         <Grid container spacing={16}>
           <Grid item xs={8} sm container>
-            <MovieCard movie={movie} genres={genres} />
+            <MovieDetail movie={movie} genres={genres} />
           </Grid>
           <Grid item xs={4} sm container />
         </Grid>
