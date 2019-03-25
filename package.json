@@ -108,7 +108,6 @@
     "react",
     "prop-types",
     "react-dom",
-    "react-scripts",
     "react-redux",
     "react-router-dom",
     "redux",

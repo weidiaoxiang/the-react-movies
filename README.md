@@ -2,9 +2,32 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+Befort run this project in local development enviroment. 
+Please ensure local machine has installed nodejs.Please ignore it if system has installed nodejs.
+Refere to [nodejs](https://nodejs.org/en/)
+
+1. Simple to run app in local machine :
+In the project directory, you can run script in mac like:
+
+### `sudo sh ./start_mac.sh`
+
+or run script in windows powsershell/cmd (as administrator) like:
+
+### `sh ./start_windows.sh`
+
+2. Also can run follow script step by step as below:
+
+In the project directory, you have to run script first :
+
+### `npm install` 
+
+to install all dependencies.
+
+Then run script 
+### `npm run start`
+
+to start app in local machine.
 
 Runs the app in the development mode.<br>
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
