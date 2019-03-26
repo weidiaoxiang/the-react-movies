@@ -87,7 +87,7 @@ const styles = theme => ({
   },
 });
 
-class PrimarySearchAppBar extends React.Component {
+class SearchAppBar extends React.Component {
   state = {
     tabValue: "/popular",
     searchKeyword: "",
@@ -153,11 +153,11 @@ class PrimarySearchAppBar extends React.Component {
   }
 }
 
-PrimarySearchAppBar.propTypes = {
+SearchAppBar.propTypes = {
   classes: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default compose(
   withRouter,
   withStyles(styles)
-)(PrimarySearchAppBar);
+)(SearchAppBar);

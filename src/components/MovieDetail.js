@@ -79,17 +79,19 @@ const MovieCard = props => {
   const { classes, movie, genres } = props;
 
   return (
-    <Card className={classes.card}>
+    <Card>
       <CardHeader
+        data-testid="movie-header"
         title={<HeaderTitle movie={movie} classes={classes} />}
         subheader={<HeaderSubTitle genres={genres} classes={classes} />}
       />
       <CardMedia
+        data-testid="movie-media"
         className={classes.media}
         image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
         title={movie.original_title}
       />
-      <CardContent>
+      <CardContent data-testid="movie-content">
         <Typography component="p">{movie.overview}</Typography>
         <Typography component="p">{movie.overview}</Typography>
         <div>

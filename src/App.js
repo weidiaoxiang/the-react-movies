@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
-import "./App.css";
-import Main from "./containers/Main";
+import SearchAppBar from "./components/SearchAppBar";
 import { getGenres } from "./actions/genresActions";
 
 const styles = theme => ({
@@ -36,7 +35,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <div className="App__header">
-            <Main />
+            <SearchAppBar />
           </div>
           <div className={classes.main}>{this.props.children}</div>
           <div className="App__footer" />
